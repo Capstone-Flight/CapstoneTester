@@ -52,6 +52,7 @@ class CapstoneTesterApplicationTests {
         parser.close();
     }
 
+    // Configuration is in application.properties
     @Test
     void testDB() {
         /*String sql0 = "DELETE FROM DEREK_TEST";
