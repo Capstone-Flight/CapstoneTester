@@ -27,7 +27,7 @@ class CapstoneTesterApplicationTests {
     private final String FLIGHT_ENDPT = "flights";
 
     @Test
-    void contextLoads() throws IOException {
+    void testAviationStack() throws IOException {
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL + FLIGHT_ENDPT)
                 .queryParam("access_key", "28fa300471daad608f828401ae813421")
                 .queryParam("flight_status", "active")
