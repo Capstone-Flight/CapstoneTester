@@ -1,4 +1,4 @@
-package com.flight.capstonetester;
+package com.flight.capstonetester.bindings;
 
 public class FlightInfo {
     private String flight_date;
@@ -7,8 +7,8 @@ public class FlightInfo {
     private Arrival arrival;
     private Airline airline;
     private Flight flight;
-    private Object aircraft;
-    private Object live;
+    private Aircraft aircraft;
+    private Live live;
 
     @Override
     public String toString() {
@@ -17,19 +17,19 @@ public class FlightInfo {
                 departure, arrival, airline, flight, aircraft, live);
     }
 
-    public String getFlightDate() {
+    public String getFlight_date() {
         return flight_date;
     }
 
-    public void setFlightDate(String flight_date) {
+    public void setFlight_date(String flight_date) {
         this.flight_date = flight_date;
     }
 
-    public String getFlightStatus() {
+    public String getFlight_status() {
         return flight_status;
     }
 
-    public void setFlightStatus(String flight_status) {
+    public void setFlight_status(String flight_status) {
         this.flight_status = flight_status;
     }
 
@@ -65,19 +65,19 @@ public class FlightInfo {
         this.flight = flight;
     }
 
-    public Object getAircraft() {
+    public Aircraft getAircraft() {
         return aircraft;
     }
 
-    public void setAircraft(Object aircraft) {
+    public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
     }
 
-    public Object getLive() {
+    public Live getLive() {
         return live;
     }
 
-    public void setLive(Object live) {
+    public void setLive(Live live) {
         this.live = live;
     }
 }

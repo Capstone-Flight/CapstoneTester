@@ -1,9 +1,10 @@
-package com.flight.capstonetester;
+package com.flight.capstonetester.bindings;
 
 public class Live {
     private String updated;
     private float latitude;
     private float longitude;
+    private int altitude;
     private int direction;
     private float speed_horizontal;
     private float speed_vertical;
@@ -12,13 +13,22 @@ public class Live {
     @Override
     public String toString() {
 
-        return String.format("Live { updated: %s | latitude: %f | longitude: %f | direction: %d | speed_horizontal: %f |" +
-                " speed_vertical: %f | is_ground: %b }", updated, latitude, longitude, direction,
+        return String.format("updated: %s | latitude: %.2f | longitude: %.2f | altitude: %d | direction: %d | speed_horizontal: %.2f |" +
+                " speed_vertical: %.2f | is_ground: %b", updated, latitude, longitude, altitude, direction,
                 speed_horizontal, speed_vertical, is_ground);
     }
 
     public String getUpdated() {
         return updated;
+    }
+
+    public int getAltitude() {
+        return altitude;
+    }
+
+    public Live setAltitude(int altitude) {
+        this.altitude = altitude;
+        return this;
     }
 
     public Live setUpdated(String updated) {

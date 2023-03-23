@@ -4,11 +4,14 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flight.capstonetester.bindings.FlightInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,13 +23,19 @@ class CapstoneTesterApplicationTests {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private final String BASE_URL = "http://api.aviationstack.com/v1/";
+    private final String FLIGHT_ENDPT = "flights";
+
     @Test
     void contextLoads() throws IOException {
-        final String uri = "http://api.aviationstack.com/v1/flights?access_key=adcb199ee23d5047d44c69bd13d23452";
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL + FLIGHT_ENDPT)
+                .queryParam("access_key", "28fa300471daad608f828401ae813421")
+                .queryParam("flight_status", "active")
+                .build();
 
         ObjectMapper mapper = new ObjectMapper();
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
+        String result = restTemplate.getForObject(uriComponents.toString(), String.class);
         JsonNode rootNode = mapper.readTree(result);
         JsonNode dataNode = rootNode.path("data");
 
@@ -41,13 +50,15 @@ class CapstoneTesterApplicationTests {
             flightInfos.add(flightInfo);
         }
 
-        System.out.println(flightInfos.get(0));
+        //System.out.println(flightInfos.get(0));
 
-        /*int count = 0;
+        int count = 0;
         for (FlightInfo flightInfo : flightInfos) {
-            System.out.printf("Result Num: %d | %s\n", count, flightInfo);
-            count++;
-        }*/
+            if (flightInfo.getLive() != null) {
+                System.out.printf("Result Num: %d | %s\n", count, flightInfo);
+                count++;
+            }
+        }
 
         parser.close();
     }

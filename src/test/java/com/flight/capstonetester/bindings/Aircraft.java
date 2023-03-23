@@ -1,4 +1,4 @@
-package com.flight.capstonetester;
+package com.flight.capstonetester.bindings;
 
 public class Aircraft {
     private String registration;
@@ -8,7 +8,7 @@ public class Aircraft {
 
     @Override
     public String toString() {
-        return String.format("Aircraft { registration: %s | iata: %s | icao: %s | icao24: %s }",
+        return String.format("registration: %s | iata: %s | icao: %s | icao24: %s",
                 registration, iata, icao, icao24);
     }
 
